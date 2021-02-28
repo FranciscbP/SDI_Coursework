@@ -8,10 +8,12 @@ public:
     User();
 
     int login(string,string);
+    int registr(string,string);
 
-    /*
-    void createUser();
-    int getUserID(string);
+    int getID(string);
+
+
+/*
     string getName(int);
     void changeIsOnline();
     void getNotifications();
