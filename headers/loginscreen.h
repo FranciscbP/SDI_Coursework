@@ -18,6 +18,12 @@ public:
 private slots:
     void on_LoginButton_clicked();
 
+    void on_go_loginPage_clicked();
+
+    void on_go_registerPage_clicked();
+
+    void on_RegisterButton_clicked();
+
 private:
     Ui::loginScreen *ui;
 };

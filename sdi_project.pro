@@ -19,12 +19,14 @@ SOURCES += \
     src/connectdb.cpp \
     src/main.cpp \
     src/loginscreen.cpp \
+    src/otherFunctions.cpp \
     src/user.cpp
 
 HEADERS += \
     headers/connectdb.h \
     headers/header.h \
     headers/loginscreen.h \
+    headers/otherFunctions.h \
     headers/user.h
 
 FORMS += \
