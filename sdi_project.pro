@@ -16,6 +16,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    src/mainwindow.cpp \
     src/connectdb.cpp \
     src/main.cpp \
     src/loginscreen.cpp \
@@ -27,10 +28,12 @@ HEADERS += \
     headers/header.h \
     headers/loginscreen.h \
     headers/otherFunctions.h \
-    headers/user.h
+    headers/user.h \
+    headers//mainwindow.h
 
 FORMS += \
-    forms/loginscreen.ui
+    forms/loginscreen.ui \
+    forms/mainwindow.ui
 
 LIBS += \
     -lmysqlclient

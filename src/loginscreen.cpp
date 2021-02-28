@@ -3,6 +3,7 @@
 #include "QMessageBox"
 #include "headers/header.h"
 #include "headers/user.h"
+#include "headers/mainwindow.h"
 
 loginScreen::loginScreen(QWidget *parent)
     : QMainWindow(parent)
@@ -60,6 +61,13 @@ void loginScreen::on_LoginButton_clicked()
     if(tryLogin != 0)
     {
         QMessageBox::information(this,"User","Logged In!!");
+        this->hide();
+
+        /*
+            MainWindow main
+            main.setmodel(true);
+            main.exec();
+        */
 
     }
     else
