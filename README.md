@@ -1,2 +1,2 @@
 # sdi_project
-sdi_group 46
+SDI_GROUP 46
