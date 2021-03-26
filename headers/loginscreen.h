@@ -24,6 +24,7 @@ private slots:
 
     void on_RegisterButton_clicked();
 
+    void openMainScreen();
 private:
     Ui::loginScreen *ui;
 };

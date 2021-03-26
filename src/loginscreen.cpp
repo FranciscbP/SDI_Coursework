@@ -21,6 +21,14 @@ loginScreen::~loginScreen()
     delete ui;
 }
 
+void loginScreen::openMainScreen()
+{
+  static MainWindow *mainScrn = new MainWindow(this);
+  mainScrn->show();
+  mainScrn->activateWindow();
+  mainScrn->raise();
+}
+
 void loginScreen::on_go_loginPage_clicked()
 {
     ui->RegisterButton->setHidden(true);
@@ -63,12 +71,7 @@ void loginScreen::on_LoginButton_clicked()
         QMessageBox::information(this,"User","Logged In!!");
         this->hide();
 
-        /*
-            MainWindow main
-            main.setmodel(true);
-            main.exec();
-        */
-
+        openMainScreen();
     }
     else
     {

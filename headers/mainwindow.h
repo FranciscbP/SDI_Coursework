@@ -3,9 +3,9 @@
 
 #include <QMainWindow>
 
-namespace Ui {
-class MainWindow;
-}
+QT_BEGIN_NAMESPACE
+namespace Ui {class MainWindow;}
+QT_END_NAMESPACE
 
 class MainWindow : public QMainWindow
 {
@@ -17,6 +17,8 @@ public:
 
 private slots:
     void on_pushButton_12_clicked();
+
+    void on_pushButton_2_clicked();
 
 private:
     Ui::MainWindow *ui;
