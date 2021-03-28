@@ -67,6 +67,10 @@ void loginScreen::on_LoginButton_clicked()
     QString qEmail = ui->input_email->text();
     QString qPassword = ui->input_password->text();
 
+    //Clear Inputs
+    ui->input_email->clear();
+    ui->input_password->clear();
+
     string email = qEmail.toStdString();
     string password = qPassword.toStdString();
 
@@ -94,6 +98,10 @@ void loginScreen::on_RegisterButton_clicked()
 
     QString qEmail = ui->input_email_register->text();
     QString qPassword = ui->input_password_register->text();
+
+    //Clear Inputs
+    ui->input_email_register->clear();
+    ui->input_password_register->clear();
 
     string email = qEmail.toStdString();
     string password = qPassword.toStdString();
