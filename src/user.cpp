@@ -2,6 +2,8 @@
 #include "headers/connectdb.h"
 #include "headers/otherFunctions.h"
 
+const string FILE_DEST = "log.txt";
+
 User::User()
 {
 
@@ -36,7 +38,9 @@ int User::login(string email,string passwd)
             {
                 if(row[2] == passwd)
                 {
-                    return 1;
+                    int userID = getID(email);
+                    setLoggedUser(userID);
+                    return userID;
                 }
                 else
                 {
@@ -151,3 +155,113 @@ int User::getID(string email)
     }
 }
 
+string User::getEmail(int id)
+{
+    connectDB DB;
+
+     MYSQL* conn;
+     MYSQL_ROW row;
+     MYSQL_RES* res;
+     conn = mysql_init(0);
+     conn = mysql_real_connect(conn, DB.server, DB.user, DB.passwd, DB.db, 3306, NULL, 0);
+
+     if(conn)
+     {
+         stringstream selectQuery;
+         selectQuery << "Select * from users where userID ='" << id << "'";
+
+         string queryStr = selectQuery.str();
+         const char* q = queryStr.c_str();
+
+         int exeQuery = mysql_query(conn, q);
+
+         if(!exeQuery)
+         {
+             res = mysql_store_result(conn);
+             row = mysql_fetch_row(res);
+
+             if (row != nullptr)
+             {
+                 char *chr = row[1];
+                 string email(chr);
+                 return email;
+             }
+             else
+             {
+                 return 0;
+             }
+         }
+         else
+         {
+             return 0;
+         }
+     }
+     else
+     {
+         return 0;
+     }
+}
+
+void User::setLoggedUser(int id)
+{
+    string str_id = to_string(id);
+    ofstream f(FILE_DEST, ios::out | ios::trunc);
+    f << str_id;
+    f.close();
+}
+
+int User::getLoggedUser()
+{
+    ifstream f(FILE_DEST);
+
+    if (f.is_open())
+    {
+        vector <string> userData;
+        string line = "";
+
+        string data;
+
+        //Get File Lines
+        while (getline(f, line))
+        {
+            userData.push_back(line);
+        }
+
+        f.close();
+
+        data = userData[0];
+
+        int userID = stoi(data);
+        return userID;
+    }
+    else
+    {
+        return 0;
+    }
+}
+
+//Encrypt Password with Hash
+string User::createHash(string passwd)
+{
+    size_t hashedPasswd;
+    string hashedStringPassword;
+
+    // Creating hash
+    hash <string> mystdhash;
+
+    hashedPasswd = mystdhash(passwd);
+
+    hashedStringPassword = convertHashToString(hashedPasswd);
+
+    return hashedStringPassword;
+}
+
+//Convert Hash to String
+string User::convertHashToString(size_t hash)
+{
+    stringstream ss;
+
+    ss << hash;
+
+    return ss.str();
+}

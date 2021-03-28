@@ -64,10 +64,10 @@ void loginScreen::on_LoginButton_clicked()
     string email = qEmail.toStdString();
     string password = qPassword.toStdString();
 
-    int tryLogin = user.login(email,password);
+    int userID = user.login(email,password);
 
-    if(tryLogin != 0)
-    {
+    if(userID != 0)
+    {      
         QMessageBox::information(this,"User","Logged In!!");
         this->hide();
 
