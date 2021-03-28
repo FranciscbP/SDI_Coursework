@@ -10,6 +10,8 @@ loginScreen::loginScreen(QWidget *parent)
     , ui(new Ui::loginScreen)
 {
     ui->setupUi(this);
+
+    //Hide Register Form
     ui->RegisterButton->setHidden(true);
     ui->input_email_register->setHidden(true);
     ui->input_password_register->setHidden(true);
@@ -21,14 +23,17 @@ loginScreen::~loginScreen()
     delete ui;
 }
 
+//Open MainScreen Form
 void loginScreen::openMainScreen()
 {
-  static MainWindow *mainScrn = new MainWindow(this);
-  mainScrn->show();
-  mainScrn->activateWindow();
-  mainScrn->raise();
+    static MainWindow *mainScrn = new MainWindow(this);
+    mainScrn->show();
+    mainScrn->activateWindow();
+    mainScrn->raise();
 }
 
+//Hide Register Form
+//Show Login Form
 void loginScreen::on_go_loginPage_clicked()
 {
     ui->RegisterButton->setHidden(true);
@@ -41,6 +46,8 @@ void loginScreen::on_go_loginPage_clicked()
     ui->go_registerPage->setHidden(false);
 }
 
+//Hide Login Form
+//Show Show Form
 void loginScreen::on_go_registerPage_clicked()
 {
     ui->RegisterButton->setHidden(false);
@@ -52,7 +59,6 @@ void loginScreen::on_go_registerPage_clicked()
     ui->input_password->setHidden(true);
     ui->go_registerPage->setHidden(true);
 }
-
 
 void loginScreen::on_LoginButton_clicked()
 {
@@ -66,8 +72,10 @@ void loginScreen::on_LoginButton_clicked()
 
     int userID = user.login(email,password);
 
+
     if(userID != 0)
-    {      
+    {
+        //Successful Login
         QMessageBox::information(this,"User","Logged In!!");
         this->hide();
 
@@ -75,6 +83,7 @@ void loginScreen::on_LoginButton_clicked()
     }
     else
     {
+        //Unsuccessful Login
         QMessageBox::information(this,"User","Not Logged In!!");
     }
 }
@@ -93,6 +102,7 @@ void loginScreen::on_RegisterButton_clicked()
 
     if(tryRegister == 1)
     {
+        //Successful Register
         QMessageBox::information(this,"User","Registered!!");
         ui->RegisterButton->setHidden(true);
         ui->input_email_register->setHidden(true);
@@ -105,6 +115,7 @@ void loginScreen::on_RegisterButton_clicked()
     }
     else if(tryRegister == 2)
     {
+        //Unsuccessful Register - User Already on Database
         QMessageBox::information(this,"User","Already Exists!!");
     }
     else
