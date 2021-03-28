@@ -41,7 +41,10 @@ int User::login(string email,string passwd)
 
             if (row != nullptr)
             {
-                if(row[2] == passwd)
+                //Encrypt Password
+                string encryptedPasswd = createHash(passwd);
+
+                if(row[2] == encryptedPasswd)
                 {
                     //Password is Correct
                     int userID = getID(email);
@@ -87,10 +90,13 @@ int User::registr(string email, string passwd)
         conn = mysql_init(0);
         conn = mysql_real_connect(conn, DB.server, DB.user, DB.passwd, DB.db, 3306, NULL, 0);
 
+        //Encrypt Password
+        string encryptedPasswd = createHash(passwd);
+
         if(conn)
         {
             stringstream insertQuery;
-            insertQuery << "INSERT INTO users(userID, email, password) VALUES ('NULL','" << email << "','" << passwd <<"')";
+            insertQuery << "INSERT INTO users(userID, email, password) VALUES ('NULL','" << email << "','" << encryptedPasswd <<"')";
 
             string queryStr = insertQuery.str();
 
