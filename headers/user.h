@@ -10,7 +10,7 @@ public:
     int login(string,string);
     int registr(string,string);
     int getID(string);
-    string getEmail(int);
+    string getUsername(int);
 
     void setLoggedUser(int);
     int  getLoggedUser();
@@ -18,11 +18,29 @@ public:
     string createHash(string);
     string convertHashToString(size_t);
 
-/*
-    string getName(int);
-    void changeIsOnline();
-    void getNotifications();
-*/
+    int checkFriendShip(int,int);
+    int sendFriendRequest(int, int);
+
+    int removeFriend(int,int);
+    int acceptFriendRequest(int,int);
+    int declineFriendRequest(int,int);
+
+    int addFriendChat(int,int,int);
+
+    int getNumberOfFriends(int);
+    int getFriends(int,int);
+
+    int getNumberOfFriendRequests(int);
+    int getFriendRequests(int,int);
+
+    int getNumberOfGroups(int);
+    int getGroups(int,int);
+
+    int checkGroupPermissions(int,int);
+    int checkUserInGroup(int,int);
+
+    int getChatID(int,int);
+
 };
 
 #endif // USER_H

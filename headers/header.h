@@ -6,14 +6,23 @@
 #include<fstream>
 #include <stdlib.h>
 #include <string>
+#include <vector>
 #include <sstream>
 #include "mysql/mysql.h"
 #include <cstdlib>
-#include <thread> // For sleep
+#include <thread>
 #include <atomic>
 #include <chrono>
 #include <cstring>
+#include <cstdlib>
+#include <cctype>
 #include "mqtt/async_client.h"
+#include <QtMqtt/QMqttClient>
+#include <QtCore/QDateTime>
+#include <QBoxLayout>
+#include "QMessageBox"
+#include <QTimer>
+#include <thread>
 
 using namespace std;
 

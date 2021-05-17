@@ -16,6 +16,10 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    src/chat.cpp \
+    src/friendsettings.cpp \
+    src/group.cpp \
+    src/groupsettings.cpp \
     src/publisher.cpp \
     src/mainwindow.cpp \
     src/connectdb.cpp \
@@ -25,17 +29,23 @@ SOURCES += \
     src/user.cpp \
 
 HEADERS += \
+    headers/chat.h \
+    headers/friendsettings.h \
+    headers/group.h \
+    headers/groupsettings.h \
     headers/connectdb.h \
     headers/header.h \
     headers/loginscreen.h \
     headers/otherFunctions.h \
     headers/user.h \
     headers/mainwindow.h \ \
-    headers/publisher.hpp \ \
+    headers/publisher.h \ \
 
 FORMS += \
     forms/loginscreen.ui \
-    forms/mainwindow.ui
+    forms/mainwindow.ui \
+    forms/friendsettings.ui \
+    forms/groupsettings.ui
 
 LIBS += \
     -lmysqlclient \

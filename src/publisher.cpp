@@ -35,7 +35,7 @@
  * Contributors:
  *    Frank Pagliughi - initial implementation and documentation
  *******************************************************************************/
-#include "headers/publisher.hpp"
+#include "headers/publisher.h"
 
 const std::string DFLT_SERVER_ADDRESS	{ "tcp://localhost:1883" };
 const std::string DFLT_CLIENT_ID		{ "eclipse_publisher" };
@@ -60,10 +60,7 @@ public:
             cout << "\tcause: " << cause << endl;
     }
 
-    void delivery_complete(mqtt::delivery_token_ptr tok) override {
-        cout << "\tDelivery complete for token: "
-            << (tok ? tok->get_message_id() : -1) << endl;
-    }
+    void delivery_complete(mqtt::delivery_token_ptr tok) override {}
 };
 
 /////////////////////////////////////////////////////////////////////////////
@@ -113,8 +110,6 @@ public:
 
 int publisher (const char* message, const char* topic, string clientID)
 {
-    cout << message << endl;
-    cout << "Initializing for server '" << DFLT_SERVER_ADDRESS << "'..." << endl;
     mqtt::async_client client(DFLT_SERVER_ADDRESS, clientID);
     callback cb;
     client.set_callback(cb);
@@ -124,22 +119,14 @@ int publisher (const char* message, const char* topic, string clientID)
     mqtt::will_options will(willmsg);
     conopts.set_will(will);
 
-    cout << "  ...OK" << endl;
-
     try {
-        cout << "\nConnecting..." << endl;
         mqtt::token_ptr conntok = client.connect(conopts);
-        cout << "Waiting for the connection..." << endl;
         conntok->wait();
-        cout << "  ...OK" << endl;
 
         // First use a message pointer.
-
-        cout << "\nSending message..." << endl;
         mqtt::message_ptr pubmsg = mqtt::make_message(topic, message);
         pubmsg->set_qos(QOS);
         client.publish(pubmsg)->wait_for(TIMEOUT);
-        cout << "  ...OK" << endl;
         }
         catch (const mqtt::exception& exc) {
             cerr << exc.what() << endl;
