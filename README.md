@@ -1,4 +1,4 @@
-# sdi_project GROUP 46
+# SDI_Coursework GROUP 46
 
 Messaging App
 
