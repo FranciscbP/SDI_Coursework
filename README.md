@@ -1,7 +1,5 @@
 # Software Design & Implementation Coursework 
 
-GROUP 46
-
 Messaging App
 
 This repository contains the code for a messaging application that takes inspiration from the design of Discord. 
