@@ -1,4 +1,6 @@
-# SDI_Coursework GROUP 46
+# Software Design & Implementation Coursework 
+
+GROUP 46
 
 Messaging App
 
